@@ -1,3 +1,3 @@
 <?php
 
-echo "Testing App";
+echo "I am from PHP!";
