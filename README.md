@@ -1,4 +1,4 @@
-# Docker Practice
+# Docker Practice - php-env
 
 This repository contains exercises and examples for learning Docker. Here you may get an example about PHP in this branch.
 
