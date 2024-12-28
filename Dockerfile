@@ -1,13 +1,19 @@
-FROM php:8.2-cli
-COPY . /var/www/html
-WORKDIR /var/www/html
-CMD ["php", "./index.php"]
+FROM python:3
+
+WORKDIR /app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "./myapp.py"]
 
 # build the image
-# docker build -t docker-practice .
+# docker build -t python-docker-practice .
 # run the image
-# docker run --rm docker-practice
+# docker run --rm python-docker-practice
 # run the image without building
-# docker run -it --rm --name php-docker-practice -v "$(PWD):/var/www/html" -w /var/www/html docker-practice
+# docker run -it --rm --name python-docker-practice  -v "$(PWD):/app" -w /app python-docker-practice
 # run a specific file
-# docker run -it --rm --name php-docker-practice -v "$(PWD):/var/www/html" -w /var/www/html docker-practice php test.php
+# docker run -it --rm --name python-docker-practice -v "$(PWD):/app" -w /app python-docker-practice python test.py
