@@ -1,6 +1,6 @@
-# Docker Practice - reactjs
+# Docker Practice - vuejs
 
-This repository contains exercises and examples for learning Docker. Here you may get an example about reactjs in this branch.
+This repository contains exercises and examples for learning Docker. Here you may get an example about vuejs in this branch.
 
 ## Prerequisites
 
@@ -14,13 +14,13 @@ This repository contains exercises and examples for learning Docker. Here you ma
    ```sh
    git clone https://github.com/abdulmajidcse/docker-practice.git
    cd docker-practice
-   git checkout reactjs
+   git checkout vuejs
    ```
 
    Or directly clone this branch
 
    ```sh
-   git clone --branch reactjs https://github.com/abdulmajidcse/docker-practice.git
+   git clone --branch vuejs https://github.com/abdulmajidcse/docker-practice.git
    cd docker-practice
    ```
 
