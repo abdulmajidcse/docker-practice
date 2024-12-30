@@ -1,6 +1,6 @@
-# Docker Practice - vuejs
+# Docker Practice - php-app
 
-This repository contains exercises and examples for learning Docker. Here you may get an example about vuejs in this branch.
+This repository contains exercises and examples for learning Docker. Here you may get an example about php-app (PHP, MySQL) in this branch. It may be WordPress, Laravel and also may include VueJS, ReactJS and etc.
 
 ## Prerequisites
 
@@ -14,13 +14,13 @@ This repository contains exercises and examples for learning Docker. Here you ma
    ```sh
    git clone https://github.com/abdulmajidcse/docker-practice.git
    cd docker-practice
-   git checkout vuejs
+   git checkout php-app
    ```
 
    Or directly clone this branch
 
    ```sh
-   git clone --branch vuejs https://github.com/abdulmajidcse/docker-practice.git
+   git clone --branch php-app https://github.com/abdulmajidcse/docker-practice.git
    cd docker-practice
    ```
 
