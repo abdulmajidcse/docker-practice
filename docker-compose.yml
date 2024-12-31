@@ -1,10 +1,47 @@
 services:
-  vue-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "5173:5173"
+  # PHP-FPM service
+  php:
+    image: php:8.1-fpm
+    container_name: php-app
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./src:/var/www/html
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+
+  # Nginx service
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./src:/var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    depends_on:
+      - php
+
+  # MySQL service
+  mysql:
+    image: mysql:5.7
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+
+networks:
+  app-network:
+    driver: bridge
