@@ -1,17 +1,42 @@
-FROM node:22
+# Base image for PHP (Debian-based)
+FROM php:7.2-fpm
 
-# Set the working directory in the container
-WORKDIR /app
+# Install system dependencies and Node.js
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    zip \
+    unzip \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    vim \
+    nano \
+    bash \
+    && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Copy the current directory contents into the container
+# Install Composer
+COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
+
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application files
 COPY . .
 
-# Expose the development server port
-EXPOSE 5173
+# Install PHP dependencies
+RUN composer install
 
-# Start the development server
-CMD ["npm", "run", "dev"]
+# Install Node.js dependencies
+RUN npm install
+
+# Expose PHP-FPM port
+EXPOSE 9000
+
+# Start PHP-FPM
+CMD ["php-fpm"]
